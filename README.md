@@ -1,6 +1,6 @@
 # resepbapak
 
-Flutter project for dicoding class bmaf
+Flutter project for dicoding class BMFP
 
 ## Getting Started
 

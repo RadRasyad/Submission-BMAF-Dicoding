@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resepbapak/model/recipe.dart';
 import 'package:resepbapak/ui/detail/detail_activity.dart';
 
-class DetailWebLayout extends StatelessWidget {
+class DetailWebLayout extends StatefulWidget {
   Recipe recipe;
   final double padHorizontal;
   final double padVertical;
@@ -10,6 +10,13 @@ class DetailWebLayout extends StatelessWidget {
   DetailWebLayout(this.recipe,
       {Key? key, required this.padHorizontal, required this.padVertical})
       : super(key: key);
+
+  @override
+  State<DetailWebLayout> createState() => _DetailWebLayoutState();
+}
+
+class _DetailWebLayoutState extends State<DetailWebLayout> {
+  final ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +34,10 @@ class DetailWebLayout extends StatelessWidget {
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return SingleChildScrollView(
+            controller: _controller,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: padHorizontal, vertical: padVertical),
+                  horizontal: widget.padHorizontal, vertical: widget.padVertical),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -38,7 +46,7 @@ class DetailWebLayout extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15.0),
-                        child: Image.asset(recipe.img),
+                        child: Image.asset(widget.recipe.img),
                       ),
                       const SizedBox(width: 32.0),
                       Expanded(
@@ -47,7 +55,7 @@ class DetailWebLayout extends StatelessWidget {
                         children: [
                           const SizedBox(height: 32.0),
                           Text(
-                            recipe.name,
+                            widget.recipe.name,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontFamily: 'Ubuntu',
@@ -64,7 +72,7 @@ class DetailWebLayout extends StatelessWidget {
                               ),
                               const SizedBox(width: 8.0),
                               Text(
-                                recipe.rating,
+                                widget.recipe.rating,
                                 style: const TextStyle(
                                     fontFamily: 'Ubuntu', fontSize: 20),
                               ),
@@ -72,7 +80,7 @@ class DetailWebLayout extends StatelessWidget {
                           ),
                           const SizedBox(height: 16.0),
                           Text(
-                            recipe.description,
+                            widget.recipe.description,
                             textAlign: TextAlign.justify,
                             style: const TextStyle(
                               fontFamily: 'Ubuntu',
@@ -106,7 +114,7 @@ class DetailWebLayout extends StatelessWidget {
                               ListView(
                                 primary: false,
                                 shrinkWrap: true,
-                                children: recipe.ingredient.map((ing) {
+                                children: widget.recipe.ingredient.map((ing) {
                                   return Padding(
                                       padding: const EdgeInsets.only(
                                           left: 4.0, right: 4.0, bottom: 4.0),
@@ -153,7 +161,7 @@ class DetailWebLayout extends StatelessWidget {
                                 primary: false,
                                 shrinkWrap: true,
                                 itemBuilder: (BuildContext context, int index) {
-                                  final List<String> stages = recipe.stages;
+                                  final List<String> stages = widget.recipe.stages;
                                   return Padding(
                                     padding: const EdgeInsets.only(
                                         left: 4.0, right: 4.0, bottom: 4.0),
@@ -178,7 +186,7 @@ class DetailWebLayout extends StatelessWidget {
                                     ),
                                   );
                                 },
-                                itemCount: recipe.stages.length,
+                                itemCount: widget.recipe.stages.length,
                               ),
                             ],
                           ),

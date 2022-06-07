@@ -2,6 +2,8 @@
 
 Flutter project for dicoding class BMFP
 
+Preview [Click Here!](https://github.com/RadRasyad/Submission-BMFP-Dicoding/tree/main/ss)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

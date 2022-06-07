@@ -39,20 +39,24 @@ class MobileRecipeList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Expanded(
+                          flex: 5,
                             child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.asset(
-                            recipe.img,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        )),
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Image.asset(
+                                recipe.img,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            )),
                         const SizedBox(height: 8),
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Expanded(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                          child: SizedBox(
+                            height: 36,
                             child: Text(
                               recipe.name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
